@@ -26,6 +26,8 @@ final class SelfTest {
     }
 
     func run(_ view: WKWebView) {
+        // A real click would derail the test.
+        view.window?.ignoresMouseEvents = true
         Task {
             do {
                 try await steps(view)

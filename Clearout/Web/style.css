@@ -116,7 +116,7 @@ main { flex: 1; min-height: 0; overflow: auto; padding: 6px 30px 26px; }
 .chips { display: flex; gap: 5px; margin-top: 5px; min-width: 0; }
 .chip { flex: none; padding: 2px 9px; border-radius: 99px; background: var(--raised); font-size: 11px; }
 .name small.warn, .chip.warn { color: var(--amber); }
-#kept { list-style: none; margin: 12px 0 0; }
+#kept { list-style: none; margin: 12px 0 0; max-height: 18vh; overflow: auto; }
 .chip.soft { flex: 0 1 auto; min-width: 0; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .empty { color: var(--muted); padding: 18px 4px; }
 

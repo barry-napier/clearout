@@ -20,6 +20,8 @@ Closing the window leaves Clearout in the menu bar. Choose **Quit Clearout** the
 - Scanning cannot make iCloud download files (`Clearout/Safety/CloudGuard.swift`).
   Never remove that. Without it, one test scan downloaded 3.3 GB.
 - Clearout only moves things to the Trash. It never erases them.
+- It will not move anything an open app is using.
+- Cache folders that hold a browser profile (cookies, passwords) are locked.
 - It will not trash code that is saved nowhere else: no online copy, changes not saved,
   saves not uploaded, parked changes, or a private `.env` file.
 - System files, app data, media libraries and main folders are locked.

@@ -25,6 +25,7 @@ final class Scanner: @unchecked Sendable {
     private var cancelled = false
 
     private static let smallFile: Int64 = 1_000_000
+    private static let loginFiles = ["Cookies", "Login Data", "cookies.sqlite", "logins.json", "key4.db"]
     private static let nameOffset = MemoryLayout<dirent>.offset(of: \dirent.d_name)!
 
     init(root: String, home: String) {
@@ -112,6 +113,9 @@ final class Scanner: @unchecked Sendable {
             bytes += size
             if strcmp(raw, ".git") == 0 { node.isRepo = true }
 
+            let isLogin = !isFolder && info.st_size > 0 && Self.loginFiles.contains { strcmp(raw, $0) == 0 }
+            if isLogin { node.hasLogins = true }
+
             if !isFolder {
                 files += 1
                 if files % 4096 == 0 {
@@ -132,6 +136,7 @@ final class Scanner: @unchecked Sendable {
 
             nextID += 1
             let child = Node(id: nextID, name: String(cString: raw), parent: node, info: info, size: size)
+            child.hasLogins = isLogin
             nodes[child.id] = child
             node.kids.append(child)
             if isFolder { folders.append(child) }
@@ -144,6 +149,7 @@ final class Scanner: @unchecked Sendable {
             node.size += child.size
             node.newest = max(node.newest, child.newest)
             if child.hasOnlineOnly { node.hasOnlineOnly = true }
+            if child.hasLogins { node.hasLogins = true }
         }
         node.kids.sort { $0.size > $1.size }
     }

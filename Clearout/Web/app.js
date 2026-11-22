@@ -562,7 +562,7 @@ $('#pile-review').onclick = safely(async () => {
   }
   showPile();
   if (!picks.size) {
-    if (unsafe.length) toast(`Not picked, to keep your work safe. ${unsafe[0].item.name}: ${unsafe[0].reason}`);
+    if (unsafe.length) toast(`Not picked, to keep it safe. ${unsafe[0].item.name}: ${unsafe[0].reason}`);
     return;
   }
   $('#kept').replaceChildren(...unsafe.map(({ item, reason }) => el('li', { textContent: `Staying: ${item.name}. ${reason}` })));

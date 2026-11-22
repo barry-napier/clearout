@@ -48,6 +48,7 @@ final class Engine {
 
     let home: String
     private let rules: Rules
+    private let openFiles = OpenFiles()
     private var session: Session?
     private var lastID = 0
 
@@ -83,7 +84,7 @@ final class Engine {
             }
             return try json(picks.filter { $0.locked == nil } + picks.filter { $0.locked != nil })
         case "check":
-            if let reason = try await readyMap(body).unsavedWork(requiredID(body)) {
+            if let reason = try await stayReason(readyMap(body), requiredID(body)) {
                 return try json(["reason": reason])
             }
         case "search":
@@ -187,9 +188,16 @@ final class Engine {
         session = nil
     }
 
+    /// Why an item must stay for now: an app has it open, or it holds unsaved work.
+    private func stayReason(_ map: DiskMap, _ id: Int) async throws -> String? {
+        let path = Paths.human(try await map.item(id).path)
+        if let reason = await openFiles.reason(path: path) { return reason }
+        return try await map.unsavedWork(id)
+    }
+
     private func moveToTrash(_ map: DiskMap, _ id: Int) async throws -> Int64 {
         let item = try await map.itemForTrash(id)
-        if let reason = try await map.unsavedWork(id) { throw Failure(reason) }
+        if let reason = try await stayReason(map, id) { throw Failure(reason) }
         let rules = rules
         try await Task.detached {
             let path = try rules.checkBeforeTrash(item)

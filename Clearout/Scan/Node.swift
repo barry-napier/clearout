@@ -15,6 +15,8 @@ final class Node {
     var newest: Double = 0
     /// It is, or holds, something that is only online.
     var hasOnlineOnly: Bool
+    /// It is, or holds, a browser's saved cookies or passwords.
+    var hasLogins = false
     /// It is the top of a code project (it has a .git folder or file).
     var isRepo = false
     var kids: [Node] = []

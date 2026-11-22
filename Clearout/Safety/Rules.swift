@@ -27,6 +27,10 @@ struct Rules: Sendable {
         "Library/Developer/Xcode/DerivedData", ".npm/_cacache", ".npm/_npx",
         ".bun/install/cache", ".gradle/caches", ".yarn/berry/cache",
     ]
+    // macOS's own caches that do not start with com.apple.
+    private static let systemCaches: Set<String> = [
+        "GeoServices", "PassKit", "FamilyCircle", "familycircled", "SiriTTS", "GameKit",
+    ]
     private static let mediaLibraries: Set<String> = [
         "photoslibrary", "musiclibrary", "tvlibrary", "fcpbundle", "imovielibrary", "logicx",
     ]
@@ -69,7 +73,8 @@ struct Rules: Sendable {
         if Self.mediaLibraries.contains(Self.type(of: last)) { return "This is a media library. Clean it in its own app." }
 
         if top == "library" || top.hasPrefix(".") {
-            if rel.hasPrefix("Library/Caches/com.apple.") || rel.hasPrefix("Library/Caches/CloudKit") {
+            let isSystem = parts.count > 2 && rel.hasPrefix("Library/Caches/") && Self.systemCaches.contains(parts[2])
+            if isSystem || rel.hasPrefix("Library/Caches/com.apple.") || rel.hasPrefix("Library/Caches/CloudKit") {
                 return "macOS looks after this."
             }
             if Self.cacheFolders.contains(where: { Paths.inside(rel, $0) }) { return nil }
@@ -79,6 +84,14 @@ struct Rules: Sendable {
         if parts.count == 1, Self.mainFolders.contains(top) { return "This is a main folder. Open it and pick things inside." }
         if rel.lowercased() == "music/music" { return "This is your music library." }
         return nil
+    }
+
+    /// Some tools keep whole browser profiles in cache folders. Those are not junk.
+    func loginLock(_ raw: String, hasLogins: Bool) -> String? {
+        guard hasLogins, let rel = relative(Paths.human(raw)), rel.hasPrefix("Library/") || rel.hasPrefix(".") else {
+            return nil
+        }
+        return "This holds a browser profile, which can have logins. Open it and pick the other things inside."
     }
 
     /// The last check on the real disk, just before a move.

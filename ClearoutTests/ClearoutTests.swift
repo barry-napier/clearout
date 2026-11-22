@@ -267,6 +267,52 @@ final class ClearoutTests: XCTestCase {
         XCTAssertFalse(FileManager.default.fileExists(atPath: home + "/ran"))
     }
 
+    func testCacheWithLoginsIsLocked() async throws {
+        try put("Library/Caches/ms-playwright/mcp-chrome/Default/Cookies")
+        try put("Library/Caches/ms-playwright/chromium/big.bin", bytes: 22_000_000)
+        let map = try await scan()
+        let library = try await child("Library", in: map)
+        let caches = try await child("Caches", of: library.id, in: map)
+        let tool = try await child("ms-playwright", of: caches.id, in: map)
+        let profile = try await child("mcp-chrome", of: tool.id, in: map)
+        let browser = try await child("chromium", of: tool.id, in: map)
+        XCTAssertNotNil(tool.locked)
+        XCTAssertNotNil(profile.locked)
+        XCTAssertNil(browser.locked)
+        let found = await map.cleanup()
+        XCTAssertEqual(found.map(\.group), [.app])
+        XCTAssertEqual(found.first?.note, tool.locked)
+    }
+
+    func testSystemCachesAreLocked() {
+        let rules = Rules(home: home)
+        XCTAssertNotNil(rules.lockReason(home + "/Library/Caches/GeoServices"))
+        XCTAssertNotNil(rules.lockReason(home + "/Library/Caches/GeoServices/Resources"))
+        XCTAssertNil(rules.lockReason(home + "/Library/Caches/GeoServicesHelper"))
+    }
+
+    func testOpenFilesSkipClearoutItself() {
+        let output = "p7\ncClearout\nn/a/mine\np8\ncDia\nfcwd\nn/a/theirs\n"
+        XCTAssertEqual(OpenFiles.parse(output, ignoring: 7).map(\.path), ["/a/theirs"])
+    }
+
+    func testFolderInUseStays() async throws {
+        try put("café folder/file.txt")
+        try put("idle/file.txt")
+        let reader = Process()
+        reader.executableURL = URL(fileURLWithPath: "/usr/bin/tail")
+        reader.arguments = ["-f", home + "/café folder/file.txt"]
+        reader.standardOutput = FileHandle.nullDevice
+        try reader.run()
+        defer { reader.terminate() }
+        try await Task.sleep(for: .milliseconds(500))
+        let files = OpenFiles()
+        let busy = await files.reason(path: home + "/café folder")
+        let idle = await files.reason(path: home + "/idle")
+        XCTAssertEqual(busy, "tail is using this. Quit it first.")
+        XCTAssertNil(idle)
+    }
+
     func testCancelStopsTheScan() async throws {
         try put("file.bin")
         let scanner = Scanner(root: home, home: home)

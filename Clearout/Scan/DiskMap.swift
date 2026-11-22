@@ -39,7 +39,7 @@ actor DiskMap {
         let online = node.hasOnlineOnly ? "Some of this is only online. Use Finder for this." : nil
         return Item(
             id: node.id, name: title(of: node), path: Paths.human(full), size: node.size, dir: node.isFolder,
-            mtime: node.isFolder ? nil : node.modified, locked: rules.lockReason(full) ?? online)
+            mtime: node.isFolder ? nil : node.modified, locked: rules.lockReason(full) ?? rules.loginLock(full, hasLogins: node.hasLogins) ?? online)
     }
 
     private func arcs(_ node: Node, total: Int64, depth: Int) -> [Item] {
@@ -78,7 +78,7 @@ actor DiskMap {
                 var item = describe(node)
                 // Never offer something locked as an easy win.
                 item.group = item.locked == nil ? hint.group : .app
-                item.note = hint.note
+                item.note = hint.group == .app ? hint.note : item.locked ?? hint.note
                 found.append(item)
             } else {
                 for kid in node.kids { visit(kid, Paths.join(full, kid.name)) }

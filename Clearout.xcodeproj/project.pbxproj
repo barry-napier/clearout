@@ -15,6 +15,7 @@
 		223E623E60DE321443122A5B /* Windows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0208C68AF1ADE3602614365 /* Windows.swift */; };
 		3016686198D0E3E1FD3211FB /* CloudGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4B34213CA1E1D3C97A6BA /* CloudGuard.swift */; };
 		38CF25BE532021FA782F4633 /* ClearoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ECF00BD514C58A9E67A984 /* ClearoutApp.swift */; };
+		3908D2218413E5D475D6E96E /* OpenFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F0240966782D934D780E5C /* OpenFiles.swift */; };
 		49EEE21454450DFE3224984D /* MenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584ADE7E85703228B8A43527 /* MenuContent.swift */; };
 		4A50C142F6FDFDC7CAE58D72 /* UnsavedWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5C9BBB3859C98E91814517 /* UnsavedWork.swift */; };
 		4CEDAB77FDA7390CC11FE742 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA295D07D8A7C44557B2FE6E /* Node.swift */; };
@@ -42,6 +43,7 @@
 		E1BBAC4E07B2C8E92746A193 /* Suggestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381351685882770EF03E8F0 /* Suggestions.swift */; };
 		E342312EAD7DC4EBC1A796A2 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE89553040B38B28844000 /* Scanner.swift */; };
 		E39CE7C6C8755F8F6E4C81C7 /* CloudGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4B34213CA1E1D3C97A6BA /* CloudGuard.swift */; };
+		E68B11DBF983D14E2D605072 /* OpenFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F0240966782D934D780E5C /* OpenFiles.swift */; };
 		E99A32834A8885B1A50EC6EC /* ClearoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035F60663C41C93F5B087E2E /* ClearoutTests.swift */; };
 		F314A92BFC94F7D3CFB49644 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D0D58F7F3AFFB8B29BE5A /* AppDelegate.swift */; };
 		F5A85AE36917232805F1D1DE /* WebPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F710B722623DDDA56BF928 /* WebPage.swift */; };
@@ -72,6 +74,7 @@
 		9BF4B34213CA1E1D3C97A6BA /* CloudGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudGuard.swift; sourceTree = "<group>"; };
 		9EFE89553040B38B28844000 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		A0208C68AF1ADE3602614365 /* Windows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Windows.swift; sourceTree = "<group>"; };
+		A1F0240966782D934D780E5C /* OpenFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFiles.swift; sourceTree = "<group>"; };
 		A5776F50116B318432FC18B7 /* ClearoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClearoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33B2EFDCE09D77A06EC8160 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CB999AEFAB426C7AC8782129 /* Clearout.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Clearout.xcconfig; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 			children = (
 				9BF4B34213CA1E1D3C97A6BA /* CloudGuard.swift */,
 				891F4467562B3B536B307897 /* Failure.swift */,
+				A1F0240966782D934D780E5C /* OpenFiles.swift */,
 				98AF931F99D3D035B2C53B0F /* Paths.swift */,
 				8E709071335F212B6C974B80 /* Rules.swift */,
 				8E5C9BBB3859C98E91814517 /* UnsavedWork.swift */,
@@ -302,6 +306,7 @@
 				B0FB2505449F4C5C92F3152B /* Failure.swift in Sources */,
 				00F96DBD5165E5B60107AE47 /* Models.swift in Sources */,
 				74F64C95C0F06F26DE2AE36E /* Node.swift in Sources */,
+				E68B11DBF983D14E2D605072 /* OpenFiles.swift in Sources */,
 				C02CBCC3299BCD6A295A2046 /* Paths.swift in Sources */,
 				DB75F766DF95218714649557 /* Rules.swift in Sources */,
 				75E21B8F1669BE06785DDCA0 /* Scanner.swift in Sources */,
@@ -328,6 +333,7 @@
 				1DCD8C7C579C8C1AF391EC7B /* MenuIcon.swift in Sources */,
 				064F11F35A7BF978A5CFE7DD /* Models.swift in Sources */,
 				4CEDAB77FDA7390CC11FE742 /* Node.swift in Sources */,
+				3908D2218413E5D475D6E96E /* OpenFiles.swift in Sources */,
 				61DA117AB345585479E01B42 /* Paths.swift in Sources */,
 				665543854CC6965F0C643A1B /* Permissions.swift in Sources */,
 				9115456B9ABE86440A4A4CB0 /* Rules.swift in Sources */,
