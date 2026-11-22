@@ -4,6 +4,14 @@
 
 A private disk cleaner for your Mac. See what fills it, then clean it up.
 
+## Get it
+
+[Download Clearout](https://github.com/barry-napier/clearout/releases/latest/download/Clearout.dmg),
+open it, and drag Clearout to Applications. It needs macOS 15 or newer.
+Clearout never uses the network, so it cannot update itself. Download new versions the same way.
+
+Website: [clearout.bnapier.dev](https://clearout.bnapier.dev)
+
 ## Use
 
 1. Open **Clearout** from Applications. It also lives in your menu bar.
@@ -61,3 +69,18 @@ The Xcode project is generated from `project.yml`. Edit that, not the project.
 - `Clearout/UI`: native windows
 - `Clearout/Web`: the screens, in plain HTML, CSS and JS
 - `scripts/make-icon.swift`: draws the icon
+- `site/`: the website, in plain HTML, CSS and JS
+
+## Releasing
+
+Commit, push `main`, then run this on a Mac with a Developer ID certificate:
+
+```sh
+./scripts/release.sh 0.2.0 --publish
+```
+
+It runs the tests, builds, signs, has Apple check it, and publishes the DMG on GitHub.
+The website's Download button always gets the newest release.
+The Apple login is the `clearout-notary` keychain profile. The script says how to save one.
+
+After you change `site/`, publish it with `cd site && vercel --prod`.

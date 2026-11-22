@@ -40,10 +40,10 @@
     <div class="pitch">
       <p>See what’s eating your Mac. Pick what goes. Clearout moves it to the Trash, and locks the stuff you’d cry about.</p>
       <div class="actions">
-        <a class="download" href="#install">Get Clearout</a>
+        <a class="download" href="https://github.com/barry-napier/clearout/releases/latest/download/Clearout.dmg">Download for Mac</a>
         <a class="source" href="https://github.com/barry-napier/clearout">Read the code</a>
       </div>
-      <p class="needs">No account. No server. Needs macOS 15 or newer and Apple silicon.</p>
+      <p class="needs">No account. No server. Needs macOS 15 or newer.</p>
     </div>
   </header>
 
@@ -147,11 +147,13 @@
 
       <article class="card">
         <button class="film f-locks" type="button" aria-label="Enlarge: Lock what matters">
-          <span class="take" data-take="1"><span class="line">Nope.</span><span class="doors"><span>System files</span><span>App data</span><span>Photo library</span><span>Main folders</span></span></span>
+          <span class="take" data-take="1"><span class="line">Nope.</span><span class="doors"><span>System files</span><span>App data</span><span>Photo library</span><span>Browser logins</span></span></span>
+          <span class="take" data-take="2" hidden><span class="line">Busy.</span><span class="why">“Spotify is using this. Quit it first.”</span></span>
         </button>
         <div class="meta">
           <h3>Lock what matters</h3>
-          <p>The risky stuff has no Pick button to press.</p>
+          <p>Risky stuff stays put. So does anything an open app is using.</p>
+          <div class="takes" role="group" aria-label="Lock examples"></div>
         </div>
       </article>
 
@@ -189,8 +191,8 @@
   <section id="privacy" class="section privacy">
     <h2>It’s your mess.<br><em>Nobody else needs to see it.</em></h2>
     <dl>
-      <div><dt>Does it use the internet?</dt><dd>No. Clearout has no server, no account and no tracking.</dd></div>
-      <div><dt>What can it read?</dt><dd>A scan reads names, sizes and dates. It doesn’t open your files. For code, it asks Git, the code-saving tool on your Mac, if your work is saved.</dd></div>
+      <div><dt>Does it use the internet?</dt><dd>No. It has no server, no account and no tracking. It can’t update itself, so get new versions here.</dd></div>
+      <div><dt>What can it read?</dt><dd>A scan reads names, sizes and dates. It doesn’t open your files. Before a move, it checks which apps have files open. For code, it asks Git, the code-saving tool on your Mac, if your work is saved.</dd></div>
       <div><dt>Why Full Disk Access?</dt><dd>So it can see every folder. You can skip it, but then your Mac hides some folders and asks you more often.</dd></div>
       <div><dt>What does the AI see?</dt><dd>Names only, on your Mac. It needs macOS 26 and Apple Intelligence. Everything else works without it.</dd></div>
       <div><dt>When do I get space back?</dt><dd>When you empty the Trash. Sizes are close but not exact, because macOS can share space between copies.</dd></div>
@@ -201,20 +203,13 @@
   <section id="install" class="section install">
     <h2>Give your Mac some room.</h2>
     <div class="steps">
-      <p>There’s no download yet. For now you build it on your Mac.</p>
       <ol>
-        <li>Install <a href="https://apps.apple.com/app/xcode/id497799835">Xcode</a>. Add your Apple account and make an <b>Apple Development</b> certificate.</li>
-        <li>Paste this into Terminal.
-          <div class="code">
-            <pre id="command" tabindex="0"><code>git clone https://github.com/barry-napier/clearout.git
-cd clearout
-./scripts/build.sh</code></pre>
-            <button id="copy" type="button">Copy</button>
-          </div>
-        </li>
-        <li>Clearout opens by itself. Switch on Full Disk Access when it asks.</li>
+        <li>Click <b>Download for Mac</b>.</li>
+        <li>Open <b>Clearout.dmg</b> from your Downloads, then drag Clearout into Applications.</li>
+        <li>Open Clearout and switch on Full Disk Access when it asks.</li>
       </ol>
-      <a class="download" href="https://github.com/barry-napier/clearout">Open on GitHub</a>
+      <a class="download" href="https://github.com/barry-napier/clearout/releases/latest/download/Clearout.dmg">Download for Mac</a>
+      <p class="needs">Checked by Apple for malware. Needs macOS 15 or newer.</p>
     </div>
   </section>
 </main>

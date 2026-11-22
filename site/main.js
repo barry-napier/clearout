@@ -312,17 +312,6 @@ $$('[data-screen]').forEach(button => button.addEventListener('click', () => {
   });
 }));
 
-$('#copy').addEventListener('click', async () => {
-  const text = $('#command').textContent;
-  try {
-    await navigator.clipboard.writeText(text);
-    $('#copy').textContent = 'Copied';
-  } catch {
-    getSelection().selectAllChildren($('#command'));
-    $('#copy').textContent = 'Press Command-C';
-  }
-});
-
 $('#theme').addEventListener('click', () => {
   const next = isDark() ? 'light' : 'dark';
   document.documentElement.dataset.theme = next;
