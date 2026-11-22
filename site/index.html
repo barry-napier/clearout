@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clearout · Your Mac is full. Clear it out.</title>
+<meta name="description" content="A private disk cleaner for your Mac. See what fills it, pick what goes, and move it to the Trash. No account, no server.">
+<link rel="canonical" href="https://clearout.bnapier.dev/">
+<meta property="og:title" content="Clearout">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clearout.bnapier.dev/">
+<meta property="og:image" content="https://clearout.bnapier.dev/assets/share.jpg">
+<meta property="og:description" content="Your Mac is full. Clear it out. A private disk cleaner that never leaves your Mac.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preload" href="assets/fonts/climate.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script>
+  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t } catch {}
+</script>
+<script src="main.js" defer></script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <a class="home" href="#top" aria-label="Clearout, top of page"><img src="assets/icon.png" width="32" height="32" alt=""></a>
+  <a class="wide" href="#films">See it work</a>
+  <a class="wide" href="#screens">Screens</a>
+  <a class="wide" href="#privacy">Privacy</a>
+  <a href="#install">Install</a>
+  <button id="theme" type="button" aria-label="Switch between light and dark">◐</button>
+</nav>
+
+<main id="top">
+  <header class="hero">
+    <h1 aria-label="Your Mac is full. Clear it out.">
+      <span aria-hidden="true">Your Mac is<br><span class="full" id="full">full<i>not for long</i></span>.<br>Clear it out.</span>
+    </h1>
+    <div class="pitch">
+      <p>See what’s eating your Mac. Pick what goes. Clearout moves it to the Trash, and locks the stuff you’d cry about.</p>
+      <div class="actions">
+        <a class="download" href="#install">Get Clearout</a>
+        <a class="source" href="https://github.com/barry-napier/clearout">Read the code</a>
+      </div>
+      <p class="needs">No account. No server. Needs macOS 15 or newer and Apple silicon.</p>
+    </div>
+  </header>
+
+  <section class="stage" id="stage" aria-label="Clearout demo, with made-up files">
+    <p class="free"><b id="free">12.4 GB</b> <span>free</span></p>
+    <p class="say" id="say">Click a piece to bin it.<br>Nothing real gets touched.</p>
+    <svg id="map" class="map" viewBox="0 0 1000 500" role="group" aria-label="Space map"></svg>
+    <div class="chips" id="chips"></div>
+    <div class="bin">
+      <svg id="can" viewBox="0 0 80 88" aria-hidden="true"><path class="lid" d="M8 16h64M30 16V7h20v9"/><path d="M15 27l5 54h40l5-54M32 39v30M48 39v30"/></svg>
+      <p><b id="binned">0 GB</b><br>in the Trash</p>
+      <button id="empty" type="button" disabled>Empty Trash</button>
+    </div>
+    <div class="stage-controls">
+      <button id="reset" type="button">Start again</button>
+      <button id="pause" type="button">Pause</button>
+    </div>
+  </section>
+
+  <section id="films" class="section">
+    <div class="section-head">
+      <h2>See it work</h2>
+      <p>Every screen here is Clearout’s real screen, with made-up files. Every AI guess came from Apple’s model. Click one to make it bigger.</p>
+    </div>
+
+    <div class="gallery">
+      <article class="card">
+        <button class="film f-map" type="button" aria-label="Enlarge: See what fills it">
+          <span class="take" data-take="1"><span class="line">Oh. So that’s where it went.</span><img src="assets/shots/crop-fan.webp" width="1100" height="552" alt=""></span>
+          <span class="take" data-take="2" hidden><span class="line">Click in. Dig down.</span><img src="assets/shots/crop-fan-developer.webp" width="1100" height="552" alt=""></span>
+        </button>
+        <div class="meta">
+          <h3>See what fills it</h3>
+          <p>One map. Each band is one folder deeper.</p>
+          <div class="takes" role="group" aria-label="Map examples"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <button class="film f-easy" type="button" aria-label="Enlarge: Start with easy wins">
+          <span class="take" data-take="1"><span class="big">49.9<br>GB</span><span class="line">of stuff you can get again.</span></span>
+          <span class="take" data-take="2" hidden><span class="line top">Junk, with reasons.</span><img src="assets/shots/crop-easy.webp" width="1100" height="651" alt=""></span>
+        </button>
+        <div class="meta">
+          <h3>Start with easy wins</h3>
+          <p>Caches and build files that apps make again.</p>
+          <div class="takes" role="group" aria-label="Easy win examples"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <button class="film f-smart" type="button" aria-label="Enlarge: Find what you forgot">
+          <span class="take" data-take="1"><span class="line">Remember<br>this?</span><span class="note"><b>Iceland trip · 36.3 GB</b>Not changed for over a year.</span></span>
+          <span class="take" data-take="2" hidden><span class="line">Got it<br>twice?</span><span class="note"><b>Wedding photos.zip · 14.2 GB</b>A folder with the same name is next to it.</span></span>
+          <span class="take" data-take="3" hidden><span class="line small">The dusty corners.</span><img src="assets/shots/crop-smart.webp" width="1100" height="651" alt=""></span>
+        </button>
+        <div class="meta">
+          <h3>Find what you forgot</h3>
+          <p>Big old things, and zips you already opened.</p>
+          <div class="takes" role="group" aria-label="Smart pick examples"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <button class="film f-code" type="button" aria-label="Enlarge: Keep unsaved code">
+          <span class="take" data-take="1"><span class="line">Hands off.</span><span class="why">“This code has no online copy.”</span></span>
+          <span class="take" data-take="2" hidden><span class="line">Not yet.</span><span class="why">“It has 2 changed files not saved.”</span></span>
+          <span class="take" data-take="3" hidden><span class="line small">Save these first.</span><img src="assets/shots/crop-locked.webp" width="1100" height="410" alt=""></span>
+        </button>
+        <div class="meta">
+          <h3>Keep unsaved code</h3>
+          <p>Projects saved nowhere else stay locked.</p>
+          <div class="takes" role="group" aria-label="Unsaved code examples"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <button class="film f-cloud" type="button" aria-label="Enlarge: Leave iCloud alone">
+          <span class="take" data-take="1">
+            <svg class="cloud" viewBox="0 0 120 74" aria-hidden="true"><path d="M28 70a24 24 0 0 1-3-48A31 31 0 0 1 84 17a27 27 0 0 1 8 53z"/></svg>
+            <span class="line">What’s online<br>stays online.</span>
+          </span>
+        </button>
+        <div class="meta">
+          <h3>Leave iCloud alone</h3>
+          <p>A scan can’t make iCloud download your files.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <button class="film f-ai" type="button" aria-label="Enlarge: AI only gets to guess">
+          <span class="take" data-take="1"><span class="line">AI can guess.<br>It can’t delete.</span><span class="guess">Looks like: Backup or zip. Is this your only copy?</span></span>
+          <span class="take" data-take="2" hidden><span class="line">You know.<br>It doesn’t.</span><span class="guess">Looks like: Game project. Do you still work on this game?</span></span>
+        </button>
+        <div class="meta">
+          <h3>AI only gets to guess</h3>
+          <p>Plain rules pick. Apple’s AI just adds a label.</p>
+          <div class="takes" role="group" aria-label="AI examples"></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <button class="film f-locks" type="button" aria-label="Enlarge: Lock what matters">
+          <span class="take" data-take="1"><span class="line">Nope.</span><span class="doors"><span>System files</span><span>App data</span><span>Photo library</span><span>Main folders</span></span></span>
+        </button>
+        <div class="meta">
+          <h3>Lock what matters</h3>
+          <p>The risky stuff has no Pick button to press.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <button class="film f-trash" type="button" aria-label="Enlarge: You get the last word">
+          <span class="take" data-take="1"><span class="line">Trash.<br>Never<br>shredder.</span><img src="assets/shots/crop-confirm.webp" width="1100" height="799" alt=""></span>
+          <span class="take" data-take="2" hidden><span class="line wide-line">Changed your mind? Put it back.</span><span class="after">It’s all there until you empty the Trash.</span></span>
+        </button>
+        <div class="meta">
+          <h3>You get the last word</h3>
+          <p>Check the list first. Nothing is erased.</p>
+          <div class="takes" role="group" aria-label="Trash examples"></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="screens" class="section screens">
+    <div class="section-head">
+      <h2>Big mess. Small app.</h2>
+      <p>Clearout waits in your menu bar with your free space. Open it when that number gets scary.</p>
+    </div>
+    <div class="tabs" role="group" aria-label="Screenshots">
+      <button type="button" data-screen="home" aria-pressed="true"><b>Home</b><span>The whole mess, at a glance.</span></button>
+      <button type="button" data-screen="map" aria-pressed="false"><b>Map</b><span>Follow the fat bands.</span></button>
+      <button type="button" data-screen="cleanup" aria-pressed="false"><b>Clean up</b><span>Easy wins come first.</span></button>
+      <button type="button" data-screen="smart" aria-pressed="false"><b>Smart picks</b><span>Big, old and forgotten.</span></button>
+      <button type="button" data-screen="confirm" aria-pressed="false"><b>Last check</b><span>You say yes, or it stays.</span></button>
+    </div>
+    <div class="screen">
+      <img id="screen" src="assets/shots/home.webp" width="2000" height="1295" loading="lazy" alt="Clearout Home screen">
+    </div>
+  </section>
+
+  <section id="privacy" class="section privacy">
+    <h2>It’s your mess.<br><em>Nobody else needs to see it.</em></h2>
+    <dl>
+      <div><dt>Does it use the internet?</dt><dd>No. Clearout has no server, no account and no tracking.</dd></div>
+      <div><dt>What can it read?</dt><dd>A scan reads names, sizes and dates. It doesn’t open your files. For code, it asks Git, the code-saving tool on your Mac, if your work is saved.</dd></div>
+      <div><dt>Why Full Disk Access?</dt><dd>So it can see every folder. You can skip it, but then your Mac hides some folders and asks you more often.</dd></div>
+      <div><dt>What does the AI see?</dt><dd>Names only, on your Mac. It needs macOS 26 and Apple Intelligence. Everything else works without it.</dd></div>
+      <div><dt>When do I get space back?</dt><dd>When you empty the Trash. Sizes are close but not exact, because macOS can share space between copies.</dd></div>
+      <div><dt>What about cloud files?</dt><dd>Online-only files stay online. Cloud drive folders are skipped. Desktop and Documents are locked if iCloud syncs them.</dd></div>
+    </dl>
+  </section>
+
+  <section id="install" class="section install">
+    <h2>Give your Mac some room.</h2>
+    <div class="steps">
+      <p>There’s no download yet. For now you build it on your Mac.</p>
+      <ol>
+        <li>Install <a href="https://apps.apple.com/app/xcode/id497799835">Xcode</a>. Add your Apple account and make an <b>Apple Development</b> certificate.</li>
+        <li>Paste this into Terminal.
+          <div class="code">
+            <pre id="command" tabindex="0"><code>git clone https://github.com/barry-napier/clearout.git
+cd clearout
+./scripts/build.sh</code></pre>
+            <button id="copy" type="button">Copy</button>
+          </div>
+        </li>
+        <li>Clearout opens by itself. Switch on Full Disk Access when it asks.</li>
+      </ol>
+      <a class="download" href="https://github.com/barry-napier/clearout">Open on GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Clearout · Made by Barry Napier</span>
+  <a href="https://nudge.bnapier.dev">Also try Nudge</a>
+  <a href="https://github.com/barry-napier/clearout">Source code</a>
+  <a href="https://github.com/barry-napier/clearout/issues">Report a problem</a>
+</footer>
+
+<dialog id="viewer" aria-label="Bigger view">
+  <button class="close" type="button">Close</button>
+  <div id="viewer-film"></div>
+</dialog>
+
+</body>
+</html>
