@@ -1,0 +1,59 @@
+name: Clearout
+options:
+  bundleIdPrefix: com.barrynapier
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+configFiles:
+  Debug: Config/Clearout.xcconfig
+  Release: Config/Clearout.xcconfig
+targets:
+  Clearout:
+    type: application
+    platform: macOS
+    sources:
+      - path: Clearout
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.barrynapier.clearout
+        PRODUCT_NAME: Clearout
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_LSUIElement: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Clearout
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_NSDesktopFolderUsageDescription: Clearout reads file sizes to show what fills your Mac.
+        INFOPLIST_KEY_NSDocumentsFolderUsageDescription: Clearout reads file sizes to show what fills your Mac.
+        INFOPLIST_KEY_NSDownloadsFolderUsageDescription: Clearout reads file sizes to show what fills your Mac.
+        INFOPLIST_KEY_NSRemovableVolumesUsageDescription: Clearout reads file sizes on the disk you pick.
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "Apple Development"
+  ClearoutTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: ClearoutTests
+      - path: Clearout/Scan
+      - path: Clearout/Safety
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY: "Apple Development"
+schemes:
+  Clearout:
+    build:
+      targets:
+        Clearout: all
+        ClearoutTests: [test]
+    run:
+      config: Debug
+    test:
+      targets: [ClearoutTests]
